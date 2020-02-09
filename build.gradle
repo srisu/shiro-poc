@@ -1,0 +1,57 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+
+
+apply plugin: 'war'
+
+//group = 'com.sri'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+//	maven{
+//		url "https://mvnrepository.com"
+//	}
+}
+
+war {
+	enabled = true
+	archivesBaseName = 'sridemo'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework:spring-context'
+	compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.4.2'
+	compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.4.2'
+	compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.2.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '2.2.2.RELEASE'
+	compile files('libs/gft_smartapi_lib.jar')
+	compile files('libs/RayMedi_common_lib.jar')
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+	compile group: 'org.json', name: 'json', version: '20190722'
+	compile group: 'webmacro', name: 'webmacro', version: '1.1final'
+	compile group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.4.2'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+
+//apply plugin: 'java'
+//compileJava {
+//	sourceCompatibility = '1.8'
+//	targetCompatibility = '1.8'
+//}
+
+
+
+test {
+	useJUnitPlatform()
+}
